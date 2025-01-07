@@ -1,6 +1,6 @@
 {
   "name": "fez-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "一个快速创建前端项目的脚手架工具 | A scaffold tool for quickly creating frontend projects",
   "bin": {
     "fez": "bin/index.js"
