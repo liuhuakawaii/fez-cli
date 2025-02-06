@@ -34,99 +34,57 @@ export async function renderTemplate(templatePath, targetPath, options) {
 }
 
 export function getDependencies(options) {
-  const { framework, language, cssFramework, bundler } = options;
+  const { framework, language, bundler } = options;
 
   // 基础依赖
   const dependencies = {
-    react: {
-      dependencies: ['react', 'react-dom'],
-      devDependencies: [
-        // 添加 React 相关的 Babel 预设
-        '@babel/preset-react',
-        '@babel/preset-env'
-      ]
-    },
-    vue: {
-      dependencies: ['vue'],
-      devDependencies: ['@vitejs/plugin-vue']
-    }
-  };
-
-  // 语言相关依赖
-  const languageDeps = {
-    typescript: {
-      dependencies: [],
-      devDependencies: [
-        'typescript',
-        '@types/node',
-        framework === 'react' ? '@types/react' : ''
-      ].filter(Boolean)
-    }
-  };
-
-  // CSS相关依赖
-  const cssDeps = {
-    sass: {
-      dependencies: [],
-      devDependencies: ['sass']
-    },
-    less: {
-      dependencies: [],
-      devDependencies: ['less']
-    },
-    tailwind: {
-      dependencies: [],
-      devDependencies: [
-        'tailwindcss',
-        'postcss',
-        'autoprefixer',
-        'postcss-loader'
-      ]
-    }
-  };
+    react: ['react', 'react-dom'],
+    vue: ['vue']
+  }[framework];
 
   // 构建工具相关依赖
   const bundlerDeps = {
-    webpack: {
-      dependencies: [],
-      devDependencies: [
-        'webpack',
-        'webpack-cli',
-        'webpack-dev-server',
-        'html-webpack-plugin',
-        'babel-loader',
-        '@babel/core',
-        '@babel/preset-env',
-        'css-loader',
-        'style-loader',
-        'postcss-loader',
-        'serve'
-      ]
-    },
-    vite: {
-      dependencies: [],
-      devDependencies: [
-        'vite',
-        framework === 'react' ? '@vitejs/plugin-react' : '@vitejs/plugin-vue'
-      ]
-    }
-  };
-
-  // 合并所有依赖
-  const result = {
-    dependencies: [
-      ...dependencies[framework].dependencies,
-      ...(languageDeps[language]?.dependencies || []),
-      ...(cssDeps[cssFramework]?.dependencies || []),
-      ...(bundlerDeps[bundler]?.dependencies || [])
+    webpack: [
+      'webpack',
+      'webpack-cli',
+      'webpack-dev-server',
+      'html-webpack-plugin',
+      'babel-loader',
+      '@babel/core',
+      '@babel/preset-env',
+      ...(framework === 'react' ? ['@babel/preset-react'] : []),
+      'css-loader',
+      'style-loader',
+      'postcss-loader'
     ],
-    devDependencies: [
-      ...dependencies[framework].devDependencies,
-      ...(languageDeps[language]?.devDependencies || []),
-      ...(cssDeps[cssFramework]?.devDependencies || []),
-      ...(bundlerDeps[bundler]?.devDependencies || [])
+    vite: [
+      'vite',
+      framework === 'react' ? '@vitejs/plugin-react' : '@vitejs/plugin-vue'
     ]
-  };
+  }[bundler];
 
-  return result;
+  const devDependencies = [
+    // 构建工具依赖
+    ...bundlerDeps,
+
+    // Tailwind 相关
+    'tailwindcss',
+    'postcss',
+    'autoprefixer',
+
+    // TypeScript 相关(如果选择了 TypeScript)
+    ...(language === 'typescript'
+      ? [
+        'typescript',
+        '@types/node',
+        ...(framework === 'react' ? ['@types/react', '@types/react-dom'] : [])
+      ]
+      : []
+    )
+  ];
+
+  return {
+    dependencies,
+    devDependencies
+  };
 }

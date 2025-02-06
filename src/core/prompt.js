@@ -15,7 +15,6 @@ async function prompt() {
 
   const { framework } = await inquirer.prompt(questions);
 
-  // 根据框架选择动态加载后续问题
   const followUpQuestions = [
     {
       type: 'list',
@@ -28,26 +27,12 @@ async function prompt() {
     },
     {
       type: 'list',
-      name: 'cssFramework',
-      message: '选择CSS方案:',
-      choices: [
-        { key: '1', name: '1. Sass', value: 'sass' },
-        { key: '2', name: '2. Less', value: 'less' },
-        { key: '3', name: '3. Tailwind CSS', value: 'tailwind' },
-        { key: '4', name: '4. 无 CSS 预处理器', value: 'none' }
-      ]
-    },
-    {
-      type: 'list',
       name: 'bundler',
       message: '选择构建工具:',
-      choices: ({ framework }) => {
-        const choices = [
-          { key: '1', name: '1. Vite (推荐)', value: 'vite' },
-          { key: '2', name: '2. Webpack', value: 'webpack' }
-        ];
-        return framework === 'vue' ? choices : choices.reverse();
-      }
+      choices: [
+        { key: '1', name: '1. Vite', value: 'vite' },
+        { key: '2', name: '2. Webpack', value: 'webpack' }
+      ]
     },
     {
       type: 'confirm',
@@ -72,7 +57,8 @@ async function prompt() {
   const answers = await inquirer.prompt(followUpQuestions);
   return {
     framework,
-    ...answers
+    ...answers,
+    cssFramework: 'tailwind' // 只保留 Tailwind
   };
 }
 

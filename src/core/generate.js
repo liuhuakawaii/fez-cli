@@ -22,62 +22,29 @@ class Generator {
     // 1. 创建项目目录
     await fs.ensureDir(this.targetDir);
 
-    // 2. 复制基础模板
-    await this.copyBaseTemplate();
+    // 2. 复制框架模板
+    await this.copyFrameworkTemplate();
 
-    // 3. 应用语言模板
-    await this.applyLanguageTemplate();
+    // 3. 复制通用文件
+    await this.copyCommonFiles();
 
-    // 4. 应用样式模板
-    await this.applyStyleTemplate();
-
-    // 5. 配置构建工具
-    await this.configureBundler();
-
-    // 6. 安装依赖
+    // 4. 安装依赖
     await this.installDependencies();
   }
 
-  async copyBaseTemplate() {
-    const baseTemplatePath = path.join(
+  async copyFrameworkTemplate() {
+    const templatePath = path.join(
       this.templateDir,
       this.options.framework,
-      'base'
-    );
-    await renderTemplate(baseTemplatePath, this.targetDir, this.options);
-  }
-
-  async applyLanguageTemplate() {
-    if (this.options.language === 'typescript') {
-      const tsTemplatePath = path.join(
-        this.templateDir,
-        this.options.framework,
-        'typescript'
-      );
-      await renderTemplate(tsTemplatePath, this.targetDir, this.options);
-    }
-  }
-
-  async applyStyleTemplate() {
-    // 只复制用户选择的 CSS 方案的模板
-    if (this.options.cssFramework !== 'none') {
-      const styleTemplatePath = path.join(
-        this.templateDir,
-        this.options.framework,
-        'styles',
-        this.options.cssFramework
-      );
-      await renderTemplate(styleTemplatePath, this.targetDir, this.options);
-    }
-  }
-
-  async configureBundler() {
-    const configPath = path.join(
-      this.templateDir,
-      'config',
+      this.options.language,
       this.options.bundler
     );
-    await renderTemplate(configPath, this.targetDir, this.options);
+    await renderTemplate(templatePath, this.targetDir, this.options);
+  }
+
+  async copyCommonFiles() {
+    const commonPath = path.join(this.templateDir, 'common');
+    await renderTemplate(commonPath, this.targetDir, this.options);
   }
 
   async installDependencies() {
