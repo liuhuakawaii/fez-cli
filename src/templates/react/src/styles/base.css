@@ -1,0 +1,80 @@
+/**
+ * 基础样式和全局重置
+ * 基于 Tailwind CSS 构建的设计系统基础样式
+ */
+
+@tailwind base;
+
+/* 基础样式重置和配置 */
+@layer base {
+  :root {
+    /* 字体配置 */
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    
+    /* 文本渲染优化 */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* 全局元素重置 */
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+    margin: 0;
+    min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  /* 链接样式 */
+  a {
+    @apply text-primary-600 hover:text-primary-700 transition-colors duration-200;
+    text-decoration: none;
+  }
+
+  /* 表单元素基础样式 */
+  input, textarea, select {
+    @apply border-gray-300 rounded-md focus:border-primary-500 focus:ring-primary-500;
+  }
+
+  /* 按钮基础样式重置 */
+  button {
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  /* 滚动条样式 */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+
+  /* 移动端滚动优化 */
+  @media (hover: none), (pointer: coarse) {
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}

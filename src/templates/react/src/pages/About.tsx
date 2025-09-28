@@ -2,7 +2,7 @@ export default function About() {
   return (
     <div className="px-4 py-6 sm:px-0">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900">About <%= projectName %></h1>
+        <h1 className="text-3xl font-bold text-gray-900">About liuhuakawaii-playground</h1>
         <div className="mt-6 prose prose-lg text-gray-600">
           <p>
             This project was created using <strong>fez-cli</strong>, a modern frontend scaffolding tool 

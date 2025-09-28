@@ -1,0 +1,27 @@
+# Dependencies
+node_modules
+
+# Production
+dist
+build
+
+# Generated files
+*.tsbuildinfo
+
+# Cache directories
+.cache
+.vite
+
+# Logs
+*.log
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Config files that should maintain their formatting
+*.config.js
+*.config.ts
+tailwind.config.js
+vite.config.ts

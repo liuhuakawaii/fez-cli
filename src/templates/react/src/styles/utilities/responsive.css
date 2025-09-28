@@ -1,0 +1,187 @@
+/**
+ * 响应式工具类
+ * 针对不同屏幕尺寸的布局和组件
+ */
+
+/* 容器工具类 */
+.container-responsive {
+  @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+  max-width: 1280px;
+}
+
+.container-fluid {
+  @apply w-full px-4 sm:px-6 lg:px-8;
+}
+
+.container-narrow {
+  @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+  max-width: 768px;
+}
+
+.container-wide {
+  @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+  max-width: 1536px;
+}
+
+/* 响应式间距 */
+.spacing-responsive-sm {
+  @apply p-4 sm:p-6 lg:p-8;
+}
+
+.spacing-responsive-md {
+  @apply p-6 sm:p-8 lg:p-12;
+}
+
+.spacing-responsive-lg {
+  @apply p-8 sm:p-12 lg:p-16;
+}
+
+/* 响应式文字大小 */
+.text-responsive-sm {
+  @apply text-sm sm:text-base lg:text-lg;
+}
+
+.text-responsive-md {
+  @apply text-base sm:text-lg lg:text-xl;
+}
+
+.text-responsive-lg {
+  @apply text-lg sm:text-xl lg:text-2xl;
+}
+
+.text-responsive-xl {
+  @apply text-xl sm:text-2xl lg:text-3xl;
+}
+
+/* 响应式网格 */
+.grid-responsive-1 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+.grid-responsive-2 {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+}
+
+.grid-responsive-3 {
+  @apply grid grid-cols-1 md:grid-cols-2;
+}
+
+/* 响应式间隙 */
+.gap-responsive-sm {
+  @apply gap-4 sm:gap-6 lg:gap-8;
+}
+
+.gap-responsive-md {
+  @apply gap-6 sm:gap-8 lg:gap-12;
+}
+
+.gap-responsive-lg {
+  @apply gap-8 sm:gap-12 lg:gap-16;
+}
+
+/* 响应式显示/隐藏 */
+.show-mobile {
+  @apply block sm:hidden;
+}
+
+.show-tablet {
+  @apply hidden sm:block lg:hidden;
+}
+
+.show-desktop {
+  @apply hidden lg:block;
+}
+
+.hide-mobile {
+  @apply hidden sm:block;
+}
+
+.hide-tablet {
+  @apply block sm:hidden lg:block;
+}
+
+.hide-desktop {
+  @apply block lg:hidden;
+}
+
+/* 响应式 Flex */
+.flex-responsive-col {
+  @apply flex flex-col sm:flex-row;
+}
+
+.flex-responsive-row {
+  @apply flex flex-row sm:flex-col lg:flex-row;
+}
+
+/* 响应式卡片 */
+.card-responsive {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 
+         p-4 sm:p-6 lg:p-8
+         hover:shadow-md transition-shadow duration-200;
+}
+
+.card-responsive-compact {
+  @apply bg-white rounded-md shadow-sm border border-gray-200 
+         p-3 sm:p-4 lg:p-6
+         hover:shadow-md transition-shadow duration-200;
+}
+
+/* 响应式按钮 */
+.btn-responsive {
+  @apply px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4
+         text-sm sm:text-base lg:text-lg
+         rounded-md font-medium transition-colors duration-200;
+}
+
+.btn-responsive-compact {
+  @apply px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3
+         text-xs sm:text-sm lg:text-base
+         rounded font-medium transition-colors duration-200;
+}
+
+/* 响应式导航 */
+.nav-responsive {
+  @apply flex flex-col sm:flex-row
+         space-y-2 sm:space-y-0 sm:space-x-6
+         p-4 sm:p-6 lg:p-8;
+}
+
+.nav-responsive-compact {
+  @apply flex flex-col sm:flex-row
+         space-y-1 sm:space-y-0 sm:space-x-4
+         p-2 sm:p-4 lg:p-6;
+}
+
+/* 响应式表格 */
+.table-responsive {
+  @apply w-full overflow-x-auto;
+}
+
+.table-responsive table {
+  @apply min-w-full divide-y divide-gray-200;
+}
+
+.table-responsive th {
+  @apply px-3 py-2 sm:px-6 sm:py-3
+         text-left text-xs sm:text-sm
+         font-medium text-gray-500 uppercase tracking-wider;
+}
+
+.table-responsive td {
+  @apply px-3 py-2 sm:px-6 sm:py-4
+         text-sm sm:text-base
+         text-gray-900 whitespace-nowrap;
+}
+
+/* 响应式模态框 */
+.modal-responsive {
+  @apply w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl
+         mx-4 sm:mx-auto
+         bg-white rounded-lg shadow-xl;
+}
+
+.modal-responsive-large {
+  @apply w-full max-w-md sm:max-w-lg lg:max-w-2xl xl:max-w-4xl
+         mx-4 sm:mx-auto
+         bg-white rounded-lg shadow-xl;
+}

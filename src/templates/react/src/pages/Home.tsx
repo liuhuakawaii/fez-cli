@@ -5,7 +5,7 @@ export default function Home() {
     <div className="px-4 py-6 sm:px-0">
       <div className="text-center">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-          Welcome to <%= projectName %>
+          Welcome to liuhuakawaii-playground
         </h1>
         <p className="mt-6 text-lg leading-8 text-gray-600">
           A modern React application built with TypeScript, Vite, and Tailwind CSS.

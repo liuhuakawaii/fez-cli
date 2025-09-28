@@ -1,0 +1,87 @@
+/**
+ * 原子化过渡动画工具类
+ * 提供细粒度的过渡控制
+ */
+
+/* Transform 过渡 */
+.transition-transform-fast { transition: transform var(--transition-fast) ease; }
+.transition-transform { transition: transform var(--transition-normal) ease; }
+.transition-transform-slow { transition: transform var(--transition-slow) ease; }
+.transition-transform-ease-in-out { transition: transform var(--transition-normal) ease-in-out; }
+.transition-transform-cubic { transition: transform var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* Background 过渡 */
+.transition-bg-fast { transition: background-color var(--transition-fast) ease; }
+.transition-bg { transition: background-color var(--transition-normal) ease; }
+.transition-bg-slow { transition: background-color var(--transition-slow) ease; }
+.transition-bg-ease-in-out { transition: background-color var(--transition-normal) ease-in-out; }
+
+/* Color 过渡 */
+.transition-color-fast { transition: color var(--transition-fast) ease; }
+.transition-color { transition: color var(--transition-normal) ease; }
+.transition-color-slow { transition: color var(--transition-slow) ease; }
+.transition-color-ease-in-out { transition: color var(--transition-normal) ease-in-out; }
+
+/* Border 过渡 */
+.transition-border-fast { transition: border-color var(--transition-fast) ease; }
+.transition-border { transition: border-color var(--transition-normal) ease; }
+.transition-border-slow { transition: border-color var(--transition-slow) ease; }
+.transition-border-ease-in-out { transition: border-color var(--transition-normal) ease-in-out; }
+
+/* Shadow 过渡 */
+.transition-shadow-fast { transition: box-shadow var(--transition-fast) ease; }
+.transition-shadow { transition: box-shadow var(--transition-normal) ease; }
+.transition-shadow-slow { transition: box-shadow var(--transition-slow) ease; }
+.transition-shadow-ease-in-out { transition: box-shadow var(--transition-normal) ease-in-out; }
+
+/* Opacity 过渡 */
+.transition-opacity-fast { transition: opacity var(--transition-fast) ease; }
+.transition-opacity { transition: opacity var(--transition-normal) ease; }
+.transition-opacity-slow { transition: opacity var(--transition-slow) ease; }
+.transition-opacity-ease-in-out { transition: opacity var(--transition-normal) ease-in-out; }
+
+/* 组合过渡 */
+.transition-all-fast { 
+  transition: all var(--transition-fast) ease; 
+}
+
+.transition-all { 
+  transition: all var(--transition-normal) ease; 
+}
+
+.transition-all-slow { 
+  transition: all var(--transition-slow) ease; 
+}
+
+.transition-colors-fast {
+  transition: background-color var(--transition-fast) ease, 
+              border-color var(--transition-fast) ease, 
+              color var(--transition-fast) ease;
+}
+
+.transition-colors {
+  transition: background-color var(--transition-normal) ease, 
+              border-color var(--transition-normal) ease, 
+              color var(--transition-normal) ease;
+}
+
+.transition-colors-slow {
+  transition: background-color var(--transition-slow) ease, 
+              border-color var(--transition-slow) ease, 
+              color var(--transition-slow) ease;
+}
+
+/* 特殊缓动函数 */
+.transition-bounce { transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+.transition-elastic { transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.transition-back { transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+/* 延迟过渡 */
+.transition-delay-75 { transition-delay: 75ms; }
+.transition-delay-100 { transition-delay: 100ms; }
+.transition-delay-150 { transition-delay: 150ms; }
+.transition-delay-200 { transition-delay: 200ms; }
+.transition-delay-300 { transition-delay: 300ms; }
+.transition-delay-500 { transition-delay: 500ms; }
+.transition-delay-700 { transition-delay: 700ms; }
+.transition-delay-1000 { transition-delay: 1000ms; }
