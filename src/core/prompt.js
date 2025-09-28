@@ -5,33 +5,18 @@ async function prompt() {
     {
       type: 'list',
       name: 'framework',
-      message: '选择框架:',
+      message: '选择项目类型:',
       choices: [
-        { key: '1', name: '1. React', value: 'react' },
-        { key: '2', name: '2. Vue 3', value: 'vue' }
-      ]
-    }
-  ];
-
-  const { framework } = await inquirer.prompt(questions);
-
-  const followUpQuestions = [
-    {
-      type: 'list',
-      name: 'language',
-      message: '选择开发语言:',
-      choices: [
-        { key: '1', name: '1. JavaScript', value: 'javascript' },
-        { key: '2', name: '2. TypeScript', value: 'typescript' }
-      ]
-    },
-    {
-      type: 'list',
-      name: 'bundler',
-      message: '选择构建工具:',
-      choices: [
-        { key: '1', name: '1. Vite', value: 'vite' },
-        { key: '2', name: '2. Webpack', value: 'webpack' }
+        {
+          key: '1',
+          name: '1. React (TypeScript + Vite + Tailwind + 现代化目录结构)',
+          value: 'react'
+        },
+        {
+          key: '2',
+          name: '2. Vue 3 (TypeScript + Vite + Tailwind)',
+          value: 'vue'
+        }
       ]
     },
     {
@@ -54,11 +39,14 @@ async function prompt() {
     }
   ];
 
-  const answers = await inquirer.prompt(followUpQuestions);
+  const answers = await inquirer.prompt(questions);
+
+  // 根据选择的框架设置固定配置
   return {
-    framework,
     ...answers,
-    cssFramework: 'tailwind' // 只保留 Tailwind
+    language: 'typescript',  // 统一使用 TypeScript
+    bundler: 'vite',         // 统一使用 Vite
+    cssFramework: 'tailwind' // 统一使用 Tailwind
   };
 }
 

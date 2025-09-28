@@ -33,58 +33,12 @@ export async function renderTemplate(templatePath, targetPath, options) {
   }
 }
 
+// 已弃用：依赖信息现在直接在模板的 package.json 中定义
 export function getDependencies(options) {
-  const { framework, language, bundler } = options;
-
-  // 基础依赖
-  const dependencies = {
-    react: ['react', 'react-dom'],
-    vue: ['vue']
-  }[framework];
-
-  // 构建工具相关依赖
-  const bundlerDeps = {
-    webpack: [
-      'webpack',
-      'webpack-cli',
-      'webpack-dev-server',
-      'html-webpack-plugin',
-      'babel-loader',
-      '@babel/core',
-      '@babel/preset-env',
-      ...(framework === 'react' ? ['@babel/preset-react'] : []),
-      'css-loader',
-      'style-loader',
-      'postcss-loader'
-    ],
-    vite: [
-      'vite',
-      framework === 'react' ? '@vitejs/plugin-react' : '@vitejs/plugin-vue'
-    ]
-  }[bundler];
-
-  const devDependencies = [
-    // 构建工具依赖
-    ...bundlerDeps,
-
-    // Tailwind 相关
-    'tailwindcss',
-    'postcss',
-    'autoprefixer',
-
-    // TypeScript 相关(如果选择了 TypeScript)
-    ...(language === 'typescript'
-      ? [
-        'typescript',
-        '@types/node',
-        ...(framework === 'react' ? ['@types/react', '@types/react-dom'] : [])
-      ]
-      : []
-    )
-  ];
-
+  // 为了保持向后兼容性，保留此函数但返回空数组
+  console.warn('getDependencies is deprecated. Dependencies are now defined in template package.json files.');
   return {
-    dependencies,
-    devDependencies
+    dependencies: [],
+    devDependencies: []
   };
 }

@@ -33,11 +33,10 @@ class Generator {
   }
 
   async copyFrameworkTemplate() {
+    // 新的简化模板结构：直接使用框架目录
     const templatePath = path.join(
       this.templateDir,
-      this.options.framework,
-      this.options.language,
-      this.options.bundler
+      this.options.framework
     );
     await renderTemplate(templatePath, this.targetDir, this.options);
   }
@@ -52,37 +51,13 @@ class Generator {
       return;
     }
 
-    const { dependencies, devDependencies } = getDependencies(this.options);
-
-    // 创建 package.json
-    const packageJson = {
-      name: this.options.projectName,
-      version: '1.0.0',
-      private: true,
-      scripts: {
-        "dev": this.options.bundler === 'vite' ? 'vite' : 'webpack serve',
-        "build": this.options.bundler === 'vite' ? 'vite build' : 'webpack build',
-        "serve": this.options.bundler === 'vite' ? 'vite preview' : 'serve dist'
-      }
-    };
-
-    await fs.writeJSON(path.join(this.targetDir, 'package.json'), packageJson, { spaces: 2 });
-
+    // 模板中已经包含 package.json，直接安装依赖
     const spinner = ora('正在安装依赖...').start();
 
     try {
-      const installCmd = this.getInstallCommand();
-
-      if (dependencies.length > 0) {
-        spinner.text = '正在安装项目依赖...';
-        await this.execCommand(`${installCmd} ${dependencies.join(' ')}`);
-      }
-
-      if (devDependencies.length > 0) {
-        spinner.text = '正在安装开发依赖...';
-        await this.execCommand(`${installCmd} -D ${devDependencies.join(' ')}`);
-      }
-
+      const installCmd = this.getInstallCommand().split(' ')[0]; // 只取包管理器名称
+      spinner.text = '正在安装依赖...';
+      await this.execCommand(`${installCmd} install`);
       spinner.succeed('依赖安装完成！');
     } catch (error) {
       spinner.fail('依赖安装失败！');
