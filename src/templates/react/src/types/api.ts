@@ -40,8 +40,24 @@ export enum RequestStatus {
 // HTTP 方法类型
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
-// 请求配置接口
+// 请求配置接口（兼容旧的fetch配置）
 export interface RequestConfig extends RequestInit {
   timeout?: number
   retries?: number
+}
+
+// Axios 请求配置接口（新）
+export interface AxiosRequestConfig {
+  // 是否显示错误提示（默认true）
+  showErrorTip?: boolean
+  // 自定义错误提示消息
+  errorTip?: string
+  // 是否显示成功提示
+  showSuccessTip?: boolean
+  // 自定义成功提示消息
+  successTip?: string
+  // 重试次数（默认使用全局配置）
+  retries?: number
+  // 是否启用重试（默认true）
+  enableRetry?: boolean
 }

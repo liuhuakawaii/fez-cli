@@ -50,13 +50,12 @@ async function create(projectName) {
     // 更新提示信息
     console.log('\n你可以执行以下命令开始开发:');
     console.log(chalk.cyan(`\n  cd ${projectName}`));
-    // 根据用户选择的包管理器显示对应的命令
+    // 根据实际使用的包管理器显示对应的命令
+    const packageManager = generator.packageManager || 'npm';
     const runCmd = {
       npm: 'npm run',
-      cnpm: 'cnpm run',
-      pnpm: 'pnpm',
-      yarn: 'yarn'
-    }[options.packageManager || 'npm'];
+      pnpm: 'pnpm'
+    }[packageManager] || 'npm run';
     console.log(chalk.cyan(`  ${runCmd} dev`));
 
     // 添加额外的帮助信息

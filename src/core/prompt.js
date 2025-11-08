@@ -22,20 +22,8 @@ async function prompt() {
     {
       type: 'confirm',
       name: 'installDeps',
-      message: '是否立即安装依赖?',
+      message: '是否立即安装依赖?（优先pnpm）',
       default: true
-    },
-    {
-      type: 'list',
-      name: 'packageManager',
-      message: '选择包管理工具:',
-      choices: [
-        { key: '1', name: '1. npm', value: 'npm' },
-        { key: '2', name: '2. cnpm', value: 'cnpm' },
-        { key: '3', name: '3. pnpm', value: 'pnpm' },
-        { key: '4', name: '4. yarn', value: 'yarn' }
-      ],
-      when: (answers) => answers.installDeps
     }
   ];
 

@@ -1,11 +1,14 @@
 /**
  * 数据获取 Hook
  * 提供统一的数据获取接口，支持缓存、重试、取消等功能
+ * 基于 axios 实现
  */
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { apiClient, handleApiError } from '@/lib/api'
-import type { RequestConfig, AsyncState } from '@/types'
+import { request } from '@/services/request'
+import { handleApiError } from '@/services/errorHandler'
+import type { AsyncState } from '@/types'
+import type { RequestConfig } from '@/services/request'
 
 interface UseFetchOptions extends RequestConfig {
   // 是否立即执行请求
@@ -46,34 +49,36 @@ export function useFetch<T>(
     error: null
   })
 
-  const abortControllerRef = useRef<AbortController | null>(null)
+  const cancelTokenRef = useRef<AbortController | null>(null)
   const isMountedRef = useRef(true)
 
   // 清理函数
   useEffect(() => {
     return () => {
       isMountedRef.current = false
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort()
+      if (cancelTokenRef.current) {
+        cancelTokenRef.current.abort()
       }
     }
   }, [])
 
   const fetchData = useCallback(async () => {
     // 取消之前的请求
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort()
+    if (cancelTokenRef.current) {
+      cancelTokenRef.current.abort()
     }
 
     // 创建新的 AbortController
-    abortControllerRef.current = apiClient.createAbortController()
+    cancelTokenRef.current = new AbortController()
 
     try {
       setState(prev => ({ ...prev, isLoading: true, error: null }))
 
-      const data = await apiClient.get<T>(endpoint, {
+      const data = await request.get<T>(endpoint, {
         ...requestConfig,
-        signal: abortControllerRef.current.signal
+        signal: cancelTokenRef.current.signal,
+        // 如果设置了onError回调，默认不显示错误提示（由业务组件处理）
+        showErrorTip: requestConfig.showErrorTip !== false && !onError,
       })
 
       if (isMountedRef.current) {
@@ -81,17 +86,17 @@ export function useFetch<T>(
         onSuccess?.(data)
       }
     } catch (error: any) {
-      if (isMountedRef.current && error.name !== 'AbortError') {
+      if (isMountedRef.current && error.name !== 'AbortError' && !error.message?.includes('canceled')) {
         const errorMessage = handleApiError(error)
         setState({ data: null, isLoading: false, error: errorMessage })
         onError?.(errorMessage)
       }
     }
-  }, [endpoint, ...deps])
+  }, [endpoint, ...deps, onSuccess, onError])
 
   const cancel = useCallback(() => {
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort()
+    if (cancelTokenRef.current) {
+      cancelTokenRef.current.abort()
       setState(prev => ({ ...prev, isLoading: false }))
     }
   }, [])
