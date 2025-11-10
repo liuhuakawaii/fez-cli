@@ -1,40 +1,41 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 + TypeScript + Vite
+import { RouterView } from 'vue-router'
+import ToastHost from '@/components/ToastHost.vue'
+
+const currentYear = new Date().getFullYear()
+const appTitle = (import.meta.env.VITE_APP_TITLE ?? 'vueaaa') as string
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 flex items-center justify-center">
-    <div class="max-w-4xl mx-auto px-4 py-8 text-center">
-      <h1 class="text-4xl font-bold text-gray-900 sm:text-6xl mb-6">
-        Welcome to <%= projectName %>
-      </h1>
-      <p class="text-lg text-gray-600 mb-8">
-        A modern Vue 3 application built with TypeScript, Vite, and Tailwind CSS.
-      </p>
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 mt-12">
-        <div class="bg-white p-6 rounded-lg shadow">
-          <h3 class="text-lg font-semibold text-gray-900">Vue 3</h3>
-          <p class="mt-2 text-gray-600">
-            Progressive JavaScript framework with Composition API.
-          </p>
+  <div class="min-h-screen bg-slate-100 text-slate-900">
+    <header class="border-b border-slate-200 bg-white">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <div class="flex items-center gap-2 text-lg font-semibold">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 font-bold text-white">
+            V
+          </span>
+          <div class="flex flex-col leading-tight">
+            <span>{{ appTitle }}</span>
+            <span class="text-xs font-normal text-slate-500">Small. Delightful. Productive.</span>
+          </div>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow">
-          <h3 class="text-lg font-semibold text-gray-900">TypeScript</h3>
-          <p class="mt-2 text-gray-600">
-            Type safety and better development experience.
-          </p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow">
-          <h3 class="text-lg font-semibold text-gray-900">Vite</h3>
-          <p class="mt-2 text-gray-600">
-            Lightning fast build tool with hot module replacement.
-          </p>
-        </div>
+        <nav class="hidden items-center gap-6 text-sm text-slate-600 sm:flex">
+          <span class="font-medium text-slate-900">Home</span>
+        </nav>
       </div>
-    </div>
+    </header>
+
+    <main class="mx-auto w-full max-w-5xl px-6 py-10">
+      <RouterView />
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white">
+      <div class="mx-auto flex max-w-5xl flex-col items-start justify-between gap-4 px-6 py-6 text-sm text-slate-500 sm:flex-row">
+        <span>Crafted with Vue 3 + Vite + Tailwind CSS</span>
+        <span>© {{ currentYear }} VueAAA Starter</span>
+      </div>
+    </footer>
+
+    <ToastHost />
   </div>
 </template>
-
-<script setup lang="ts">
-// This starter template is using Vue 3 + TypeScript + Vite
-</script> 
