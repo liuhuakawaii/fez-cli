@@ -1,4 +1,4 @@
-# liuhuakawaii-playground
+# fez-cli
 
 一个现代化的 React + TypeScript 项目初始化模板，采用最佳实践和完整的开发架构。
 
@@ -527,8 +527,8 @@ MIT License
 
 ## 📞 联系方式
 
-- 项目地址: [GitHub Repository](https://github.com/your-username/liuhuakawaii-playground)
-- 问题反馈: [Issues](https://github.com/your-username/liuhuakawaii-playground/issues)
+- 项目地址: [GitHub Repository](https://github.com/liuhuakawaii/fez-cli)
+- 问题反馈: [Issues](https://github.com/liuhuakawaii/fez-cli/issues)
 
 ---
 

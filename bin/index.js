@@ -4,7 +4,7 @@ import create from '../src/core/create.js';
 import chalk from 'chalk';
 
 const program = new Command();
-
+console.log('-------------------')
 program
   .version('1.0.0')
   .command('create <project-name>')

@@ -1,0 +1,26 @@
+/* variables.css - Global CSS Variables */
+
+:root {
+  /* Colors */
+  --color-primary: #2f54eb;
+  --color-primary-hover: #1d39c4;
+  --color-secondary: #eb2f6f;
+  --color-secondary-hover: #c41d62;
+
+  /* Font sizes */
+  --font-sm: 0.875rem;  /* 14px */
+  --font-base: 1rem;    /* 16px */
+  --font-lg: 1.125rem;  /* 18px */
+  --font-xl: 1.25rem;   /* 20px */
+  --font-2xl: 1.5rem;   /* 24px */
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.15);
+}

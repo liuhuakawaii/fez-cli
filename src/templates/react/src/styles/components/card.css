@@ -1,0 +1,11 @@
+.card {
+  @apply bg-white shadow-md rounded-xl p-6;
+}
+
+.card-header {
+  @apply text-lg font-semibold mb-2;
+}
+
+.card-body {
+  @apply text-gray-700;
+}
